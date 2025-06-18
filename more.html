@@ -20,9 +20,41 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 160, 122, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(101, 67, 33, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="paw-print" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="30" cy="30" r="2" fill="rgba(255,160,122,0.03)"/><circle cx="25" cy="25" r="1.5" fill="rgba(255,160,122,0.02)"/><circle cx="35" cy="25" r="1.5" fill="rgba(255,160,122,0.02)"/><circle cx="25" cy="35" r="1.5" fill="rgba(255,160,122,0.02)"/><circle cx="35" cy="35" r="1.5" fill="rgba(255,160,122,0.02)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23paw-print)"/></svg>');
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: -2;
+            animation: float 20s ease-in-out infinite;
         }
 
         header {
@@ -177,18 +209,21 @@
         .section {
             margin: 2rem auto;
             padding: 2.5rem;
-            background-color: #fff;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 220, 0.9) 100%);
+            backdrop-filter: blur(10px);
             border-radius: 1.2rem;
             box-shadow: 0 4px 20px var(--soft-shadow);
             transition: all 0.3s ease;
             max-width: 1200px;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 160, 122, 0.1);
         }
 
         .section:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px var(--soft-shadow);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 220, 0.95) 100%);
         }
 
         .section::before {
@@ -199,6 +234,19 @@
             width: 100%;
             height: 4px;
             background: var(--gradient-orange);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 160, 122, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+            pointer-events: none;
         }
 
         .section h2 {
@@ -325,6 +373,11 @@
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .location-card, .social-media-item, .contact-item {
@@ -459,5 +512,63 @@
     <footer>
         &copy; 2025 Warm Paws Donations. All rights reserved.
     </footer>
+
+    <script>
+        // Add interactive hover effects to list items
+        const listItems = document.querySelectorAll('.section ul li');
+        listItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+            item.style.animation = 'float 3s ease-in-out infinite';
+            
+            // Add click effect
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05) translateX(10px)';
+                setTimeout(() => {
+                    this.style.transform = 'translateX(5px)';
+                }, 200);
+            });
+        });
+
+        // Add interactive button effects
+        const donateButton = document.querySelector('button');
+        if (donateButton) {
+            donateButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            donateButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        }
+
+        // Add parallax effect to background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('body::after');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Add typing effect to the main heading
+        const mainHeading = document.querySelector('.section h2');
+        if (mainHeading && mainHeading.textContent.includes('Why Blankets Are Essential')) {
+            const text = mainHeading.textContent;
+            mainHeading.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    mainHeading.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Start typing effect when page loads
+            setTimeout(typeWriter, 1000);
+        }
+    </script>
 </body>
 </html>
