@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Blankets? - Warm Paws Donations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rich-red: #8B0000;
+            --warm-brown: #654321;
+            --soft-orange: #FFA07A;
+            --light-cream: #FFF8DC;
+            --soft-shadow: rgba(0, 0, 0, 0.1);
+            --gradient-orange: linear-gradient(135deg, #FFA07A, #FF8C00);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            font-family: 'Poppins', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: var(--gradient-orange);
+            padding: 2px;
+            text-align: left;
+            box-shadow: 0 4px 15px var(--soft-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h20v20H0z" fill="none"/><path d="M10 0l10 20H0z" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        header .row {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            text-align: left;
+            width: 100%;
+            gap: 0;
+            padding-left: 35px;
+        }
+
+        header img {
+            max-width: 120px;
+            max-height: 120px;
+            padding: 0;
+            margin: 0;
+            transition: transform 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        header img:hover {
+            transform: scale(1.05);
+        }
+
+        header p {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+            font-style: italic;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            padding: 0;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 35px;
+        }
+
+        nav ul.navbar {
+            display: flex;
+            list-style-type: none;
+            margin-bottom: 15px;
+            padding-left: 0;
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+            gap: 5px;
+        }
+
+        nav ul.navbar li {
+            margin-left: 0;
+            background-color: rgba(236, 124, 33, 0.9);
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        nav ul.navbar li:hover {
+            transform: translateY(-2px);
+        }
+
+        nav ul.navbar li a {
+            display: block;
+            color: white;
+            text-align: left;
+            padding: 10px 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            line-height: 1;
+            font-size: 16px;
+        }
+
+        nav ul.navbar li a:hover,
+        nav ul.navbar li a.active {
+            background-color: var(--rich-red);
+            color: #fff;
+        }
+
+        main {
+            padding: 2rem;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap; /* Makes it responsive on smaller screens */
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .column.left {
+            flex: 2;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .column.right {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .column.right img {
+            border-radius: 1rem;
+            box-shadow: 0 8px 25px var(--soft-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .column.right img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px var(--soft-shadow);
+        }
+
+        .section {
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background-color: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 20px var(--soft-shadow);
+            transition: all 0.3s ease;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--soft-shadow);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-orange);
+        }
+
+        .section h2 {
+            color: var(--rich-red);
+            margin-top: 0;
+            font-size: 2rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--soft-orange);
+            padding-bottom: 0.8rem;
+            position: relative;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section h2::after {
+            content: '🐾';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+        }
+
+        .section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .section ul li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .section ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .section ul li:before {
+            content: "🐾";
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .section ul li:hover:before {
+            transform: scale(1.2);
+        }
+
+        button {
+            background: var(--gradient-orange);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px var(--soft-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--soft-shadow);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0));
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        button:hover::after {
+            transform: translateY(0);
+        }
+
+        .column.right p {
+            font-size: 18px;
+            color: var(--rich-red);
+            text-align: center;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 15px var(--soft-shadow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            background: var(--gradient-orange);
+            margin-top: 2rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h20v20H0z" fill="none"/><path d="M10 0l10 20H0z" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .location-card, .social-media-item, .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--soft-shadow);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .location-card:hover, .social-media-item:hover, .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--soft-shadow);
+        }
+
+        .location-card h3, .social-media-item h3, .contact-item h3 {
+            color: var(--warm-brown);
+            margin-top: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .location-card p, .social-media-item p, .contact-item p {
+            margin: 0.8rem 0;
+            color: var(--warm-brown);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .hours {
+            font-style: italic;
+            color: var(--soft-orange);
+            font-weight: 500;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #fff, var(--light-cream));
+        }
+
+        .social-media-item .row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .social-media-item .column {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                margin: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .location-card, .social-media-item, .contact-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="row">
+            <div class="column">
+                <img src="/Users/alexandrateodorescu/Documents/WARM PAWS DONATIONS/download.png" alt="Warm Paws Logo"/>
+            </div>
+            <div class="column">
+                <h1>Why Blankets Matter 🐾</h1>
+                <p>Learn about why shelter animals need blankets</p>
+            </div>
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="more.html">Why Blankets?</a></li>
+                <li><a href="find.html">Find Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="column left">
+                <div class="section">
+                    <h2>Why Blankets Are Essential</h2>
+                    <p>
+                        Blankets play a crucial role in providing comfort and warmth to shelter animals. 
+                        They help reduce stress, provide a sense of security, and create a more home-like 
+                        environment for animals waiting for their forever homes!
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2>Benefits of Blanket Donations</h2>
+                    <ul>
+                        <li>Provides warmth during cold weather</li>
+                        <li>Creates a comfortable resting space</li>
+                        <li>Helps reduce anxiety in shelter animals</li>
+                        <li>Makes kennels more inviting for potential adopters</li>
+                        <li>Can be used for bedding, enrichment, or medical recovery</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h2>How to Donate</h2>
+                    <p>We accept both new and gently used blankets. Please ensure they are:</p>
+                    <ul>
+                        <li>Clean and in good condition</li>
+                        <li>Free of holes or loose threads</li>
+                        <li>Machine washable</li>
+                        <li>Appropriate size for shelter animals</li>
+                    </ul>
+                    <button onclick="window.location.href='find.html';">Donate Now</button>
+                </div>
+            </div>
+
+            <div class="column right">
+                    <img src="/Users/alexandrateodorescu/Documents/WARM PAWS DONATIONS/Cat.png" alt="Cat" style="max-width: 95%; height: auto;" /></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Warm Paws Donations. All rights reserved.
+    </footer>
+</body>
+</html>
